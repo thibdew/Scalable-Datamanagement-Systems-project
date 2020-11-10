@@ -1,4 +1,10 @@
 package algorithms;
 
-public class LeapfrogTrieJoin {
+import java.util.List;
+
+public class LeapfrogTrieJoin extends Algorithm{
+    @Override
+    public List<String[]> computeJoin() {
+        return null;
+    }
 }
