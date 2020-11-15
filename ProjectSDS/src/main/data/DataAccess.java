@@ -41,5 +41,4 @@ public class DataAccess {
             System.out.println(Arrays.toString(input.get(i)));
         }
     }
-
 }
