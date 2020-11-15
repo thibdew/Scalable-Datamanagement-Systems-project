@@ -1,6 +1,4 @@
 import algorithms.Algorithm;
-import algorithms.NestedLoopJoin;
-import data.DataAccess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ public class main {
         /*
         List<String[]> data1 = DataAccess.readDataset("test.csv");
         List<String[]> data2 = DataAccess.readDataset("test2.csv");
-        NestedLoopJoin join = new NestedLoopJoin(data1, data2, 1,1);
+        algorithms.NestedLoopJoin join = new algorithms.NestedLoopJoin(data1, data2, 1,1);
         DataAccess.printAll(join.computeJoin());
         System.out.println(performanceTest(join, 3,2));
         */
