@@ -24,3 +24,5 @@ hs_err_pid*
 
 *.csv
 
+# Idea folder #
+.idea/
