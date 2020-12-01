@@ -1,9 +1,24 @@
 package datastructure;
 
-// Implementation adapted from: https://www.baeldung.com/trie-java
+// Trie Node
+//  Source: https://github.com/eugenp/tutorials/blob/master/data-structures/src/main/java/com/baeldung/trie/TrieNode.java
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class TrieNode {
+class TrieNode {
+    private final Map<Character, TrieNode> children = new HashMap<>();
+    private boolean endOfWord;
 
+    Map<Character, TrieNode> getChildren() {
+        return children;
+    }
+
+    boolean isEndOfWord() {
+        return endOfWord;
+    }
+
+    void setEndOfWord(boolean endOfWord) {
+        this.endOfWord = endOfWord;
+    }
 }
