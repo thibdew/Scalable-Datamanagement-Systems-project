@@ -168,3 +168,9 @@ CREATE TABLE person_info (
     info character varying NOT NULL,
     note character varying
 );
+
+CREATE TABLE oscars (
+    id integer NOT NULL PRIMARY KEY,
+    roll character varying,
+	film character varying
+);

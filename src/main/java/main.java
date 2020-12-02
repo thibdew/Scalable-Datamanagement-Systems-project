@@ -1,6 +1,8 @@
 import algorithms.Algorithm;
+import data.DataAccess;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class main {
@@ -24,12 +26,11 @@ public class main {
     }
 
     public static void main(String[] args) {
-        /*
-        List<String[]> data1 = DataAccess.readDataset("test.csv");
-        List<String[]> data2 = DataAccess.readDataset("test2.csv");
-        algorithms.NestedLoopJoin join = new algorithms.NestedLoopJoin(data1, data2, 1,1);
-        DataAccess.printAll(join.computeJoin());
-        System.out.println(performanceTest(join, 3,2));
-        */
+        //Nested loop join example
+//        List<String[]> data1 = DataAccess.readDataset("name.csv");
+//        List<String[]> data2 = DataAccess.readDataset("oscars.csv");
+//        algorithms.NestedLoopJoin join = new algorithms.NestedLoopJoin(data1, data2, 0,0);
+//        DataAccess.printAll(join.computeJoin());
+
     }
 }
