@@ -8,4 +8,4 @@ Get all information about oscar winning actors
 
 Normal query:
 Combine a movie company with the info index of their movie
-- movie_companies indx: 1 JOIN movie_info_indx indx: 1
+- movie_companies indx: 1 JOIN movie_info_idx indx: 1
