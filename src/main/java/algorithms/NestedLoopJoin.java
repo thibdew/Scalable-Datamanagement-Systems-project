@@ -31,7 +31,7 @@ public class NestedLoopJoin extends Algorithm{
         for(int i = 0; i < dataset1.size(); i++){
             for(int j = 0; j < dataset2.size(); j++){
                 if(dataset1.get(i)[attribute1].equals(dataset2.get(j)[attribute2])){
-                    System.out.println("matched");
+                    //System.out.println("matched");
                     String[] entry = ArrayUtils.addAll(dataset1.get(i), ArrayUtils.remove(dataset2.get(j), attribute2));
                     result.add(entry);
                 }

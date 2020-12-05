@@ -18,6 +18,7 @@ public class main {
             System.gc();
             Double before = (double)System.nanoTime(); //time is measured in ns
             algorithm.computeJoin();
+            System.out.println("Completed run: " + i);
             if(i>=warmUps){
                 runtimes.add(System.nanoTime()-before);
             }
@@ -27,10 +28,9 @@ public class main {
 
     public static void main(String[] args) {
         //Nested loop join example
-        List<String[]> data1 = DataAccess.readDataset("movie_companies.csv");
-        List<String[]> data2 = DataAccess.readDataset("movie_info_idx.csv");
-        algorithms.NestedLoopJoin join = new algorithms.NestedLoopJoin(data1, data2, 1,1);
-        DataAccess.printAll(join.computeJoin());
-
+//        List<String[]> data1 = DataAccess.readDataset("IMDb movies.csv");
+//        List<String[]> data2 = DataAccess.readDataset("IMDb ratings.csv");
+//        algorithms.NestedLoopJoin join = new algorithms.NestedLoopJoin(data1, data2, 0,0);
+//        DataAccess.printAll(join.computeJoin());
     }
 }
