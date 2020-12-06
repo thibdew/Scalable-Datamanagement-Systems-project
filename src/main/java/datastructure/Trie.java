@@ -1,10 +1,5 @@
 package datastructure;
 
-
-// Trie datastructure
-//  Base implementation
-//  Source: https://github.com/eugenp/tutorials/blob/master/data-structures/src/main/java/com/baeldung/trie/TrieNode.java
-
 //TODO
 // 1. Verify which format the words of the Trie will be (internally)
 //  => only integers (e.g. a words like: 1, 2, 3)
@@ -18,64 +13,30 @@ package datastructure;
 //  => As paper supports both linear iterators for e.g. A(x), B(y), as well as n-ary ones using tries for e.g. C(u,v,w).
 //  => Written on top of current interface, or use a check to verify the type of iterator before traversing?
 
+// https://github.com/usertomlin/efficient-trie
+import org.linchimin.simpletrie.*;
 
-class Trie {
-    private TrieNode root;
+import java.util.List;
 
-    Trie() {
-        root = new TrieNode();
+public class Trie<V> extends PrefixTrie<V> {
+
+    // Constructor methods:
+    // Either using a List<String> of separate elements, or using a string array of words with values
+    public Trie(List<String> elements, List<V> values) {
+        super(elements, values);
     }
 
-    void insert(String word) {
-        TrieNode current = root;
-
-        for (char l : word.toCharArray()) {
-            current = current.getChildren().computeIfAbsent(l, c -> new TrieNode());
-        }
-        current.setEndOfWord(true);
+    public Trie(List<String> elements, List<V> values, int[] scores) {
+        super(elements, values, scores);
     }
 
-    boolean delete(String word) {
-        return delete(root, word, 0);
+    public Trie(String[] words, V[] values) {
+        super(words, values);
     }
 
-    boolean containsNode(String word) {
-        TrieNode current = root;
-
-        for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
-            TrieNode node = current.getChildren().get(ch);
-            if (node == null) {
-                return false;
-            }
-            current = node;
-        }
-        return current.isEndOfWord();
+    public Trie(String[] words, V[] values, int[] scores) {
+        super(words, values, scores);
     }
 
-    boolean isEmpty() {
-        return root == null;
-    }
 
-    private boolean delete(TrieNode current, String word, int index) {
-        if (index == word.length()) {
-            if (!current.isEndOfWord()) {
-                return false;
-            }
-            current.setEndOfWord(false);
-            return current.getChildren().isEmpty();
-        }
-        char ch = word.charAt(index);
-        TrieNode node = current.getChildren().get(ch);
-        if (node == null) {
-            return false;
-        }
-        boolean shouldDeleteCurrentNode = delete(node, word, index + 1) && !node.isEndOfWord();
-
-        if (shouldDeleteCurrentNode) {
-            current.getChildren().remove(ch);
-            return current.getChildren().isEmpty();
-        }
-        return false;
-    }
 }
