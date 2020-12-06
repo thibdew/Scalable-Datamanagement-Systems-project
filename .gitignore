@@ -11,7 +11,8 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+# Allow own external libraries -- so allow .jar files#
+# *.jar #
 *.war
 *.nar
 *.ear
@@ -27,3 +28,6 @@ hs_err_pid*
 
 # Idea folder #
 .idea/
+
+# MacOS DS STORE#
+.DS_STORE
