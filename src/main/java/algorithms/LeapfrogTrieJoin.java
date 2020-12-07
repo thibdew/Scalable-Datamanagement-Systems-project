@@ -1,12 +1,13 @@
 package algorithms;
 
-import datastructure.Trie;
+import tries.LinearIterator;
+import tries.Trie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LeapfrogTrieJoin extends Algorithm{
-    Trie<Integer>[] tries;
+    LinearIterator[] iterators;
 
     @Override
     public List<String[]> computeJoin() {
@@ -14,15 +15,15 @@ public class LeapfrogTrieJoin extends Algorithm{
 
         // TODO: Create the tries and insert values into the tries
 
-        // TODO: Sort the tries in an ascending order
+        // TODO: Sort the iterators in ascending order of their initial key
 
         while(leapfrogSearch()) {
-            String[] entry = new String[tries.length];
-            for(int i=0; i < tries.length; i++) {
-                entry[i] = String.valueOf(tries[i].key());
+            String[] entry = new String[iterators.length];
+            for(int i = 0; i < iterators.length; i++) {
+                entry[i] = String.valueOf(iterators[i].key());
             }
             result.add(entry);
-            tries[0].next();
+            iterators[0].next();
         }
 
         return result;
@@ -30,19 +31,19 @@ public class LeapfrogTrieJoin extends Algorithm{
 
     private boolean leapfrogSearch() {
         int idx = 0;
-        int maxKey = tries[tries.length - 1].key();
+        int maxKey = iterators[iterators.length - 1].key();
         while(true) {
-            Trie currentTrie = tries[idx];
-            int key = currentTrie.key();
+            LinearIterator currentIterator = iterators[idx];
+            int key = currentIterator.key();
             if(key == maxKey) {
                 return true;
             } else {
-                currentTrie.seek(maxKey);
-                if(currentTrie.atEnd()) {
+                currentIterator.seek(maxKey);
+                if(currentIterator.atEnd()) {
                     return false;
                 } else {
-                    maxKey = currentTrie.key();
-                    idx = (idx + 1) % tries.length;
+                    maxKey = currentIterator.key();
+                    idx = (idx + 1) % iterators.length;
                 }
             }
         }
