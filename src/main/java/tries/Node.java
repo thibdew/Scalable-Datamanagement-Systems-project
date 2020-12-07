@@ -1,12 +1,9 @@
-package datastructure;
+package tries;
 
 // Trie Node
 
 // Source: https://github.com/usertomlin/efficient-trie
 import org.linchimin.simpletrie.*;
-
-import java.util.*;
-import java.util.function.Function;
 
 
 class Node<V> extends TrieNode<V>{

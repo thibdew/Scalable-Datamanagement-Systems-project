@@ -1,4 +1,4 @@
-package datastructure;
+package tries;
 
 //TODO
 // 1. Verify which format the words of the Trie will be (internally)
