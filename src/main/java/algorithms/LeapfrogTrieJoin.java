@@ -1,13 +1,11 @@
 package algorithms;
 
-import tries.LinearIterator;
-import tries.Trie;
+import tries.TrieIterator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeapfrogTrieJoin extends Algorithm{
-    LinearIterator[] iterators;
+public class LeapfrogTrieJoin extends Algorithm {
 
     @Override
     public List<String[]> computeJoin() {
@@ -15,25 +13,41 @@ public class LeapfrogTrieJoin extends Algorithm{
 
         // TODO: Create the tries and insert values into the tries
 
+        // For each join variable, there is an array of TrieIterators
+        TrieIterator[][] iterators = new TrieIterator[][];
         // TODO: Sort the iterators in ascending order of their initial key
 
-        while(leapfrogSearch()) {
-            String[] entry = new String[iterators.length];
-            for(int i = 0; i < iterators.length; i++) {
-                entry[i] = String.valueOf(iterators[i].key());
+        int depth = 0;
+        boolean atEnd = false;
+        while(!atEnd) {
+            for(int i = 0; i < iterators[depth].length; i++) {
+                iterators[depth][i].open();
             }
-            result.add(entry);
-            iterators[0].next();
+
+            if(leapfrogSearch(iterators[depth])) {
+                if(depth < iterators.length - 1) {
+                    depth++;
+                } else {
+                    result.add(new String[] {iterators[depth][0].key()}); // TODO: change to actual join tuple instead of only 1 attribute
+                }
+            } else if(depth == 0) {
+                atEnd = true;
+            } else {
+                for(int i = 0; i < iterators[depth].length; i++) {
+                    iterators[depth][i].up();
+                }
+                depth--;
+            }
         }
 
         return result;
     }
 
-    private boolean leapfrogSearch() {
+    private boolean leapfrogSearch(TrieIterator[] iterators) {
         int idx = 0;
         int maxKey = iterators[iterators.length - 1].key();
         while(true) {
-            LinearIterator currentIterator = iterators[idx];
+            TrieIterator currentIterator = iterators[idx];
             int key = currentIterator.key();
             if(key == maxKey) {
                 return true;
