@@ -16,7 +16,7 @@ public class LeapfrogTrieJoin extends Algorithm {
         // TODO: Create the tries, insert values into the tries and create the TrieIterator
 
         // For each join variable, there is an array of TrieIterators
-        TrieIterator[][] iterators = new TrieIterator[][];
+        TrieIterator[][] iterators = new TrieIterator[][]{};
 
         int depth = 0;
         boolean atEnd = false;
@@ -37,7 +37,7 @@ public class LeapfrogTrieJoin extends Algorithm {
                     }
                     depth++;
                 } else { // If we are at the bottom level of the trie, add the tuples with the current join values to the result
-                    result.add(new String[] {iterators[depth][0].key()}); // TODO: change to actual join tuple instead of only 1 attribute
+                    result.add(new String[] { String.valueOf(iterators[depth][0].key())}); // TODO: change to actual join tuple instead of only 1 attribute
                     // Currently all tries are on the same key, advance one for the next iteration of leapfrogSearch
                     iterators[depth][0].next();
                 }
