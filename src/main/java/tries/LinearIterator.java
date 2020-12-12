@@ -5,9 +5,9 @@ import tries.util.KeyValue;
 
 import java.util.*;
 
-public class LinearIterator implements AbstractIterator{
+public class LinearIterator<V> implements AbstractIterator<V>{
 
-    private ArrayList<KeyValue<Integer, String>> keyValues;
+    private ArrayList<KeyValue<Integer, V>> keyValues;
     private int currentIndex;
 
     private int arraySize;
@@ -21,7 +21,7 @@ public class LinearIterator implements AbstractIterator{
     public LinearIterator(int[] keys){
         this.keyValues = new ArrayList<>();
         for(int k : keys){
-            this.keyValues.add(new KeyValue<>(k, DEFAULT_VAL));
+            this.keyValues.add(new KeyValue<>(k, null));
         }
         this.currentIndex = 0;
         this.arraySize = keyValues.size();
@@ -29,7 +29,7 @@ public class LinearIterator implements AbstractIterator{
     }
 
     // Constructor 2: When using existing ArrayList<KeyValue>
-    public LinearIterator(ArrayList<KeyValue<Integer, String>> keyValuePairs){
+    public LinearIterator(ArrayList<KeyValue<Integer, V>> keyValuePairs){
         this.keyValues = keyValuePairs;
         this.currentIndex = 0;
         this.arraySize = keyValues.size();
@@ -37,8 +37,8 @@ public class LinearIterator implements AbstractIterator{
     }
     // Constructor 3: When using Key Value pairs
     //  ==> KeyValues will be populated with keys and values (as Strings, read from CSV files)
-    // NOTE: NOT SUPPORTED BY INTERFACE ATM
-    public LinearIterator(int[] keys, String[] values) throws Exception {
+    // NOTE: NOW SUPPORTED BY INTERFACE ATM!!
+    public LinearIterator(int[] keys, V[] values) throws Exception {
         this.keyValues = new ArrayList<>();
 
         // Only allow equal amounts of keys and values
@@ -50,7 +50,7 @@ public class LinearIterator implements AbstractIterator{
         else {
             for (int i = 0; i < keys.length; i++){
                 int k = keys[i];
-                String v = values[i];
+                V v = values[i];
                 this.keyValues.add(new KeyValue<>(k, v));
             }
         }
@@ -105,6 +105,12 @@ public class LinearIterator implements AbstractIterator{
     @Override
     public boolean atEnd() {
         return atEnd;
+    }
+
+    // Gets value of current index
+    @Override
+    public V getValue(){
+        return keyValues.get(currentIndex).getValue();
     }
 
     // Utility method for resetting Iterator interface to idx 0

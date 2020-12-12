@@ -2,6 +2,14 @@
 
 Test queries:
 
+Testing conditions:
+Desktop system (Intel core i?)
+
+Warmup runs: 0
+Timed runs: 10
+(determine number of warmup runs necessary after the first time running the bechmark)
+
+
 Good query for leapfrog:
 Get all information about oscar winning actors
 - oscars.csv indx:0 JOIN name.csv indx:0

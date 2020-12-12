@@ -1,6 +1,6 @@
 package tries;
 
-public interface AbstractIterator {
+public interface AbstractIterator<V> {
 
     public static String DEFAULT_VAL = "NO_VALUE";
 
@@ -10,4 +10,6 @@ public interface AbstractIterator {
     public void seek(int seekKey);
     public boolean atEnd();
 
+    // Extra operations for data access
+    public V getValue();
 }
