@@ -38,6 +38,8 @@ public class LeapfrogTrieJoin extends Algorithm {
                     depth++;
                 } else { // If we are at the bottom level of the trie, add the tuples with the current join values to the result
                     result.add(new String[] {iterators[depth][0].key()}); // TODO: change to actual join tuple instead of only 1 attribute
+                    // Currently all tries are on the same key, advance one for the next iteration of leapfrogSearch
+                    iterators[depth][iterators[0].next();
                 }
             } else if(depth == 0) {
                 atEnd = true;
@@ -46,6 +48,8 @@ public class LeapfrogTrieJoin extends Algorithm {
                     iterators[depth][i].up();
                 }
                 depth--;
+                // Currently all tries are on the same key, advance one for the next iteration of leapfrogSearch
+                iterators[depth][iterators[0].next();
             }
         }
 
