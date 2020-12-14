@@ -10,7 +10,7 @@ public class LinearIteratorTest {
 
     // Create LinearIterator
     private final int[] keys = {1, 2, 3, 4, 6, 7, 9};
-    private final LinearIterator linIt = new LinearIterator(keys);
+    private final LinearIterator<String> linIt = new LinearIterator<>(keys);
 
 
     @BeforeEach
