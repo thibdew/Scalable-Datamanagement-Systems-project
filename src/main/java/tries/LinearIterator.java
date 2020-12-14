@@ -9,8 +9,7 @@ public class LinearIterator<V> implements AbstractIterator<V>{
 
     private ArrayList<KeyValue<Integer, V>> keyValues;
     private int currentIndex;
-
-    private int arraySize;
+    private final int arraySize;
     private boolean atEnd;
 
 
@@ -76,7 +75,7 @@ public class LinearIterator<V> implements AbstractIterator<V>{
             atEnd = true;
         }
         // DEBUGGING Print current position of Iterator
-        System.out.println("Lin. Iterator now at position " + currentIndex + " of " + (arraySize - 1));
+        //System.out.println("Lin. Iterator now at position " + currentIndex + " of " + (arraySize - 1));
     }
 
     @Override
@@ -95,9 +94,7 @@ public class LinearIterator<V> implements AbstractIterator<V>{
                 // set currentKey to key at this index
                 currentKey = keyValues.get(currentIndex).getKey();
                 // DEBUGGING //
-                System.out.println("LIN ITER SEEK: Current Key: " + currentKey + " ; SeekKey " + seekKey);
-                //////////////
-
+                //System.out.println("LIN ITER SEEK: Current Key: " + currentKey + " ; SeekKey " + seekKey);
             }
         }
     }
