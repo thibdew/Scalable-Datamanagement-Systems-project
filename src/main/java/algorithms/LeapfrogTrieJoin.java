@@ -9,14 +9,40 @@ import java.util.List;
 
 public class LeapfrogTrieJoin extends Algorithm {
 
+    List<String[]> inputData1;
+    List<String[]> inputData2;
+    int inputAttribute1;
+    int inputAttribute2;
+
+    int[] attribute1;
+    int[] attribute2;
+
+    public LeapfrogTrieJoin(List<String[]> inputData1, List<String[]> inputData2, int inputAttribute1, int inputAttribute2) {
+        this.inputData1 = inputData1;
+        this.inputData2 = inputData2;
+        this.inputData1.sort(new SortData());
+        this.inputData2.sort(new SortData());
+        this.inputAttribute1 = inputAttribute1;
+        this.inputAttribute2 = inputAttribute2;
+        this.attribute1 = new int[inputData1.size()];
+        this.attribute2 = new int[inputData2.size()];
+        for(int i = 1; i < inputData1.size(); i++) {
+            attribute1[i] = Integer.parseInt(inputData1.get(i)[inputAttribute1]);
+        }
+        for(int i = 1; i < inputData2.size(); i++) {
+            attribute2[i] = Integer.parseInt(inputData2.get(i)[inputAttribute2]);
+        }
+    }
+
     @Override
     public List<String[]> computeJoin() {
         List<String[]> result = new ArrayList<>();
 
-        // TODO: Create the tries, insert values into the tries and create the TrieIterator
+        TrieIterator firstIterator = new TrieIterator(new int[][]{attribute1});
+        TrieIterator secondIterator = new TrieIterator(new int[][]{attribute2});
 
         // For each join variable, there is an array of TrieIterators
-        TrieIterator[][] iterators = new TrieIterator[][]{};
+        TrieIterator[][] iterators = new TrieIterator[][]{new TrieIterator[]{firstIterator, secondIterator}};
 
         int depth = 0;
         boolean atEnd = false;
@@ -40,6 +66,18 @@ public class LeapfrogTrieJoin extends Algorithm {
                     result.add(new String[] { String.valueOf(iterators[depth][0].key())}); // TODO: change to actual join tuple instead of only 1 attribute
                     // Currently all tries are on the same key, advance one for the next iteration of leapfrogSearch
                     iterators[depth][0].next();
+                    if(iterators[depth][0].atEnd()) {
+                        if(depth == 0) {
+                            atEnd = true;
+                        } else {
+                            for(int i = 0; i < iterators[depth].length; i++) {
+                                iterators[depth][i].up();
+                            }
+                            depth--;
+                            // Currently all tries are on the same key, advance one for the next iteration of leapfrogSearch
+                            iterators[depth][0].next();
+                        }
+                    }
                 }
             } else if(depth == 0) {
                 atEnd = true;
@@ -89,4 +127,10 @@ public class LeapfrogTrieJoin extends Algorithm {
         }
     }
 
+    static class SortData implements Comparator<String[]> {
+        @Override
+        public int compare(String[] o1, String[] o2) {
+            return o1[0].compareTo(o2[0]);
+        }
+    }
 }
