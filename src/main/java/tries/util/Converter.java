@@ -1,8 +1,6 @@
 package tries.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class Converter {
 
@@ -19,6 +17,14 @@ public class Converter {
         int keyAsInt = intArray.stream().reduce(0, (accumulator, el) -> accumulator + el);
         //System.out.println("Summed value: " + keyAsInt);
         return keyAsInt;
+    }
+
+    public static int[] stringKeysToIntKeys(String[] keyArray) {
+        int[] intKeyArray = new int[keyArray.length];
+        for (int i = 0; i < keyArray.length; i++) {
+            intKeyArray[i] = stringKeyToIntKey(keyArray[i]);
+        }
+        return intKeyArray;
     }
 
 }
